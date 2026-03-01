@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Observers\UserObserver;
-use JeffersonGoncalves\HelpDesk\Concerns\HasTickets;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
@@ -20,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use JeffersonGoncalves\HelpDesk\Concerns\HasTickets;
 
 /**
  * @property int $id
