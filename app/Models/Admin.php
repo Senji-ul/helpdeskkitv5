@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Observers\AdminObserver;
+use JeffersonGoncalves\HelpDesk\Concerns\HasTickets;
+use JeffersonGoncalves\HelpDesk\Concerns\IsOperator;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
@@ -64,6 +66,8 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     use Authorizable;
     use CanResetPassword;
     use HasFactory;
+    use HasTickets;
+    use IsOperator;
     use MustVerifyEmail;
     use Notifiable;
 

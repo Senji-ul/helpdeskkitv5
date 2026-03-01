@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\UserObserver;
+use JeffersonGoncalves\HelpDesk\Concerns\HasTickets;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
@@ -64,6 +65,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authorizable;
     use CanResetPassword;
     use HasFactory;
+    use HasTickets;
     use MustVerifyEmail;
     use Notifiable;
 
@@ -88,7 +90,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'admin') {
+        if (in_array($panel->getId(), ['admin', 'operator'])) {
             return false;
         }
 

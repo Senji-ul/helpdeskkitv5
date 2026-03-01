@@ -4,22 +4,30 @@
 
 </div>
 
-# helpdeskkit Start Kit Filament 5.x and Laravel 12.x
+# HelpDeskKit — Start Kit Filament 5.x and Laravel 12.x
 
-## About helpdeskkit
+## About HelpDeskKit
 
-helpdeskkit is a robust starter kit built on Laravel 12.x and Filament 5.x, designed to accelerate the development of modern
-web applications with a ready-to-use multi-panel structure.
+HelpDeskKit is a robust starter kit built on Laravel 12.x and Filament 5.x, designed to accelerate the development of help desk and support ticket applications with a ready-to-use multi-panel structure and integrated ticket management.
 
 ## Features
 
-- **Laravel 12.x** - The latest version of the most elegant PHP framework
-- **Filament 5.x** - Powerful and flexible admin framework
-- **Multi-Panel Structure** - Includes three pre-configured panels:
-    - Admin Panel (`/admin`) - For system administrators
-    - App Panel (`/app`) - For authenticated application users
-    - Public Panel (frontend interface) - For visitors
-- **Environment Configuration** - Centralized configuration through the `config/helpdeskkit.php` file
+- **Laravel 12.x** — The latest version of the most elegant PHP framework
+- **Filament 5.x** — Powerful and flexible admin framework
+- **Help Desk System** — Full ticket management powered by [filament-help-desk](https://github.com/jeffersongoncalves/filament-help-desk)
+    - Ticket creation, assignment, comments, attachments, and history
+    - Departments, categories, canned responses, and email channels
+    - Priority and status workflows with bulk actions
+- **Multi-Panel Structure** — Includes four pre-configured panels:
+    - Admin Panel (`/admin`) — System administration and help desk oversight
+    - Operator Panel (`/operator`) — Support agents managing tickets
+    - App Panel (`/app`) — End users creating and tracking tickets
+    - Guest Panel — Public-facing interface for visitors
+- **Multi-Auth Guard** — Three independent authentication guards:
+    - `admin` — Admin model with full system access
+    - `operator` — Operator model for support agents
+    - `web` — User model for application users
+- **Environment Configuration** — Centralized configuration through the `config/helpdeskkit.php` file
 
 ## System Requirements
 
@@ -150,10 +158,13 @@ pnpm install
 
 ## Authentication Structure
 
-helpdeskkit comes pre-configured with a custom authentication system that supports different types of users:
+HelpDeskKit comes pre-configured with a multi-guard authentication system that supports three types of users:
 
-- `Admin` - For administrative panel access
-- `User` - For application panel access
+- `Admin` — Full administrative access, help desk oversight, user/operator management (`/admin`)
+- `Operator` — Support agent access, ticket management and assignment (`/operator`)
+- `User` — End-user access, ticket creation and tracking (`/app`)
+
+Each guard uses its own database table, model, login page, and password reset flow.
 
 ## Development
 
@@ -174,10 +185,11 @@ pnpm run dev
 Panels can be customized through their respective providers:
 
 - `app/Providers/Filament/AdminPanelProvider.php`
+- `app/Providers/Filament/OperatorPanelProvider.php`
 - `app/Providers/Filament/AppPanelProvider.php`
-- `app/Providers/Filament/PublicPanelProvider.php`
+- `app/Providers/Filament/GuestPanelProvider.php`
 
-Alternatively, these settings are also consolidated in the `config/helpdeskkit.php` file for easier management.
+Each panel can be enabled or disabled in `config/helpdeskkit.php`.
 
 ### Themes and Colors
 
@@ -193,23 +205,49 @@ The `config/helpdeskkit.php` file centralizes the configuration of the starter k
 - Branding options (logo, colors)
 - Authentication guards
 
+## Help Desk — jeffersongoncalves/filament-help-desk
+
+HelpDeskKit includes a full-featured help desk system powered by [filament-help-desk](https://github.com/jeffersongoncalves/filament-help-desk):
+
+- **User Panel (`/app/tickets`)** — End users create tickets, track status, and view responses
+- **Operator Panel (`/operator/tickets`)** — Support agents manage assigned tickets, change status/priority, add comments
+- **Admin Panel (`/admin/tickets`)** — Administrators oversee all tickets, departments, categories, and settings
+
+### Help Desk Features
+
+- Ticket creation with departments and categories
+- Ticket assignment to operators
+- Comments and attachments
+- Status and priority workflows
+- Ticket history and audit trail
+- Canned responses
+- Email channel integration (Mailgun, Postmark, Resend, SendGrid)
+- Bulk actions (assign, change status, change priority)
+
+### Configuration
+
+- `config/help-desk.php` — Core help desk settings (models, tables, features)
+- `config/filament-help-desk.php` — Filament UI settings (navigation, slugs, icons)
+
 ## User Profile — joaopaulolndev/filament-edit-profile
 
-This project already comes with the Filament Edit Profile plugin integrated for the Admin and App panels. It adds a complete profile editing page with avatar, language, theme color, security (tokens, MFA), browser sessions, and email/password change.
+This project comes with the Filament Edit Profile plugin integrated for all panels (Admin, Operator, and App). It adds a complete profile editing page with avatar, language, theme color, security (tokens, MFA), browser sessions, and email/password change.
 
 - Routes (defaults in this project):
   - Admin: /admin/my-profile
+  - Operator: /operator/my-profile
   - App: /app/my-profile
 - Navigation: by default, the page does not appear in the menu (shouldRegisterNavigation(false)). If you want to show it in the sidebar menu, change it to true in the panel provider.
 
 Where to configure
 - Panel providers
   - Admin: app/Providers/Filament/AdminPanelProvider.php
+  - Operator: app/Providers/Filament/OperatorPanelProvider.php
   - App: app/Providers/Filament/AppPanelProvider.php
   In these files you can adjust:
-  - ->slug('my-profile') to change the URL (e.g., 'profile')
-  - ->setTitle('My Profile') and ->setNavigationLabel('My Profile')
-  - ->setNavigationGroup('Group Profile'), ->setIcon('heroicon-o-user'), ->setSort(10)
+  - ->slug(‘my-profile’) to change the URL (e.g., ‘profile’)
+  - ->setTitle(‘My Profile’) and ->setNavigationLabel(‘My Profile’)
+  - ->setNavigationGroup(‘Group Profile’), ->setIcon(‘heroicon-o-user’), ->setSort(10)
   - ->shouldRegisterNavigation(true|false) to show/hide it in the menu
   - Shown forms: ->shouldShowEmailForm(), ->shouldShowLocaleForm([...]), ->shouldShowThemeColorForm(), ->shouldShowSanctumTokens(), ->shouldShowMultiFactorAuthentication(), ->shouldShowBrowserSessionsForm(), ->shouldShowAvatarForm()
 
@@ -222,8 +260,8 @@ Where to configure
   - visibility: file visibility (default: public)
 
 Migrations and models
-- The required columns are already included in this kit’s default migrations (users and admins): avatar_url, locale and theme_color, using the names defined in config/filament-edit-profile.php.
-- The App\Models\User and App\Models\Admin models already read the avatar using the plugin configuration (getFilamentAvatarUrl).
+- The required columns are already included in this kit’s default migrations (users, admins, and operators): avatar_url, locale and theme_color, using the names defined in config/filament-edit-profile.php.
+- The App\Models\User, App\Models\Admin, and App\Models\Operator models already read the avatar using the plugin configuration (getFilamentAvatarUrl).
 
 Avatar storage
 - Make sure the filesystem disk is configured and that the storage link exists:
@@ -231,19 +269,30 @@ Avatar storage
 - Adjust the disk and visibility in the config file according to your infrastructure.
 
 Quick access
-- Via direct URL: /admin/my-profile or /app/my-profile
+- Via direct URL: /admin/my-profile, /operator/my-profile, or /app/my-profile
 - To make it visible in the sidebar navigation, set shouldRegisterNavigation(true) in the respective Provider.
 
 Reference
 - Plugin repository: https://github.com/joaopaulolndev/filament-edit-profile
 
+## Default Credentials
+
+After running `php artisan db:seed`, use these credentials:
+
+| Panel | URL | Email | Password |
+|-------|-----|-------|----------|
+| Admin | `/admin` | `admin@helpdeskkit.com` | `password` |
+| Operator | `/operator` | `operator@helpdeskkit.com` | `password` |
+| App | `/app` | `user@helpdeskkit.com` | `password` |
+
 ## Resources
 
-helpdeskkit includes support for:
+HelpDeskKit includes support for:
 
-- User and admin management
-- Multi-guard authentication system
-- Tailwind CSS integration
+- User, admin, and operator management
+- Multi-guard authentication system (3 guards)
+- Help desk ticket system with full lifecycle management
+- Tailwind CSS 4.x integration
 - Database queue configuration
 - Customizable panel routing and branding
 
