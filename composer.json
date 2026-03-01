@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "jeffersongoncalves/filakitv5",
+    "name": "jeffersongoncalves/helpdeskkitv5",
     "type": "project",
-    "description": "FilaKit starter kit built on Laravel 12.x and Filament 5.x with a ready-to-use multi-panel structure.",
+    "description": "helpdeskkit starter kit built on Laravel 12.x and Filament 5.x with a ready-to-use multi-panel structure.",
     "keywords": [
         "laravel-starter-kit",
         "starter-kit",
